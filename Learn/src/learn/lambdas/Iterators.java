@@ -1,4 +1,4 @@
-package learn.BranchPrediction;
+package learn.lambdas;
 
 import java.util.Arrays;
 import java.util.Iterator;
