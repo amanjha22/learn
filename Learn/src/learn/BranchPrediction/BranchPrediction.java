@@ -22,28 +22,40 @@ public class BranchPrediction
 			numbers.add(i);
 		}
 
-		unsortedNumbers.addAll(numbers);
-		Collections.shuffle(unsortedNumbers);
+		int sortAvg=0;
+		int unSortAvg=0;
+		long timeTaken=0;
+		for (int j=0; j< 100; j++) {
+			unsortedNumbers.clear();
+			unsortedNumbers.addAll(numbers);
+			Collections.shuffle(unsortedNumbers);
 
-		long sum = 0;
-		int mid = (0 + 100000) / 2;
-		long time = System.currentTimeMillis();
-		for (Integer i : unsortedNumbers)
-		{
-			if (i < mid)
-				sum += i;
-		}
-		System.out.println(
-				"Time Taken Without Sort: " + (System.currentTimeMillis() - time) + ", Calcualted Sum: " + sum);
+			long sum = 0;
+			int mid = (0 + 100000) / 2;
+			long time = System.currentTimeMillis();
+			for (Integer i : unsortedNumbers) {
+				if (i < mid)
+					sum += i;
+			}
+			timeTaken= (System.currentTimeMillis() - time);
+			unSortAvg+=timeTaken;
+			System.out.println(
+					"Time Taken Without Sort: " + timeTaken + ", Calculated Sum: " + sum);
 
-		time = System.currentTimeMillis();
-		sum = 0;
-		for (Integer i : numbers)
-		{
-			if (i < mid)
-				sum += i;
+			time = System.currentTimeMillis();
+			sum = 0;
+			for (Integer i : numbers) {
+				if (i < mid)
+					sum += i;
+			}
+			timeTaken= (System.currentTimeMillis() - time);
+			sortAvg+=timeTaken;
+			System.out.println("Time Taken With Sort: " + timeTaken + ", Calculated Sum: " + sum);
 		}
-		System.out.println("Time Taken With Sort: " + (System.currentTimeMillis() - time) + ", Calcualted Sum: " + sum);
+		sortAvg/=100;
+		unSortAvg/=100;
+		System.out.println("Sorted Avg Time :"+ sortAvg);
+		System.out.println("Unsorted Avg Time : "+ unSortAvg);
 
 	}
 }
